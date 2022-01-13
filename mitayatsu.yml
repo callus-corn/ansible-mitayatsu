@@ -1,0 +1,16 @@
+---
+- hosts: mitayatsu
+  become: yes
+  tasks:
+
+    - name: Clone Dockerfile
+      git:
+        repo: https://github.com/callus-corn/docker-mitayatsu
+        dest: /opt/docker-mitayatsu
+        version: main
+    
+    - name: Exec make
+      command:
+        chdir: /opt/docker-mitayatsu
+        cmd: python3 make.py
+
